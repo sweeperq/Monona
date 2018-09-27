@@ -1,0 +1,10 @@
+# Ignore generated styles and scripts
+
+css/site.css
+css/site.min.css
+css/vendors.css
+css/vendors.min.css
+js/site.js
+js/site.min.js
+js/vendors.js
+js/vendors.min.js

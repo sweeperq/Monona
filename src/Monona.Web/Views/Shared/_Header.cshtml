@@ -1,0 +1,23 @@
+﻿<header id="site-header" class="bg-dark navbar-dark d-print-none">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 text-center text-md-left">
+                <button type="button" id="site-nav-toggle" class="btn btn-dark"><span class="navbar-toggler-icon"></span></button>
+                <a href="~/" class="navbar-brand text-light">Inventory System</a>
+            </div>
+            <div class="col-md-6 text-center text-md-right pt-1 pb-2 pb-md-0">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-controller="Profile" asp-action="Index" class="btn btn-dark">@User.Identity.Name</a>
+                    <a asp-controller="Account" asp-action="Logout" class="btn btn-dark text-warning">Logout</a>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Login" class="btn btn-dark text-warning">Login</a>
+                    <a asp-controller="Account" asp-action="Register" class="btn btn-dark text-warning">Register</a>
+                }
+                
+            </div>
+        </div>
+    </div>
+</header>
