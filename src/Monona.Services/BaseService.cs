@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Monona.Core.Entities;
+using Monona.Core.Pagination;
 using Monona.Core.Specifications;
 using Monona.Data;
 using System;
@@ -52,9 +53,19 @@ namespace Monona.Services
             return FindMany(null, sort, includes);
         }
 
+        public virtual PagedList<T> GetAllPaged(int page, int pageSize, SortSpecification<T>[] sort, params Expression<Func<T,object>>[] includes)
+        {
+            return FindManyPaged(page, pageSize, null, sort, includes);
+        }
+
         public virtual IEnumerable<TDto> GetAllDto<TDto>(SortSpecification<T>[] sort)
         {
             return FindManyDto<TDto>(null, sort);
+        }
+
+        public virtual PagedList<TDto> GetAllDtoPaged<TDto>(int page, int pageSize, SortSpecification<T>[] sort)
+        {
+            return FindManyDtoPaged<TDto>(page, pageSize, null, sort);
         }
 
         public virtual T FindSingle(Specification<T> criteria, params Expression<Func<T,object>>[] includes)
@@ -72,9 +83,19 @@ namespace Monona.Services
             return FindInternal(criteria, sort, includes).ToList();
         }
 
+        public virtual PagedList<T> FindManyPaged(int page, int pageSize, Specification<T> criteria, SortSpecification<T>[] sort, params Expression<Func<T, object>>[] includes)
+        {
+            return FindInternal(criteria, sort, includes).ToPagedList(page, pageSize);
+        }
+
         public virtual IEnumerable<TDto> FindManyDto<TDto>(Specification<T> criteria, SortSpecification<T>[] sort)
         {
             return FindInternalDto<TDto>(criteria, sort).ToList();
+        }
+
+        public virtual PagedList<TDto> FindManyDtoPaged<TDto>(int page, int pageSize, Specification<T> criteria, SortSpecification<T>[] sort)
+        {
+            return FindInternalDto<TDto>(criteria, sort).ToPagedList(page, pageSize);
         }
 
         protected virtual IQueryable<T> FindInternal(Specification<T> criteria, SortSpecification<T>[] sort, params Expression<Func<T, object>>[] includes)
