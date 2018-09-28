@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Monona.Data.Configurations;
 
 namespace Monona.Data
 {
@@ -11,6 +12,8 @@ namespace Monona.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.ApplyConfiguration(new CountryConfiguration());
         }
     }
 }
