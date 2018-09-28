@@ -42,6 +42,7 @@ namespace Monona.Web
             services.AddDbContext<MononaDbContext>(cfg => cfg.UseSqlServer(Configuration.GetConnectionString("MononaConnection")));
 
             services.AddScoped<CountryService>();
+            services.AddScoped<GoogleCategoryService>();
 
             services.AddResponseCompression(cfg => cfg.EnableForHttps = true);
 
