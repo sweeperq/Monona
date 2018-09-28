@@ -7,8 +7,7 @@ using Monona.Core.Entities;
 using Monona.Core.Specifications;
 using Monona.Services;
 using Monona.Web.Models.Countries;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Monona.Web.SearchFilters;
 
 namespace Monona.Web.Controllers
 {
@@ -23,13 +22,39 @@ namespace Monona.Web.Controllers
 
         public IActionResult Index()
         {
+            SearchFilterHelpers.ClearSearchFilter<CountryFilter>(this);
             return RedirectToAction("List");   
         }
 
-        public IActionResult List()
+        public IActionResult Search(CountryFilter filter)
         {
-            var models = _service.GetAllDto<CountryListItem>(new[] { new SortSpecification<Country>(x => x.Name) });
-            return View(models);
+            SearchFilterHelpers.SetSearchFilter(this, filter);
+            return RedirectToAction("List");
+        }
+
+        public IActionResult Sort(string sortField, SortDirection sortDirection = SortDirection.Ascending)
+        {
+            if (!sortField.IsEmpty())
+            {
+                var filter = SearchFilterHelpers.GetSearchFilter<CountryFilter>(this);
+                filter.SortField = sortField;
+                filter.SortDirection = sortDirection;
+                SearchFilterHelpers.SetSearchFilter(this, filter);
+            }
+            return RedirectToAction("List");
+        }
+
+        public IActionResult List(int page = 1)
+        {
+            var model = new PagedSearchResult<CountryListItem, CountryFilter>();
+            model.Filter = SearchFilterHelpers.GetSearchFilter<CountryFilter>(this);
+            if (page != model.Filter.Page)
+            {
+                model.Filter.Page = page;
+                SearchFilterHelpers.SetSearchFilter(this, model.Filter);
+            }
+            model.Results = _service.FindManyDtoPaged<CountryListItem>(model.Filter.Page, model.Filter.PageSize, model.Filter.GetSpecification(), model.Filter.GetSortSpecifications());
+            return View(model);
         }
 
         public IActionResult Create()

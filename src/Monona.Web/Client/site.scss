@@ -62,6 +62,12 @@
     }
 }
 
+.search-filter {
+    border: 1px solid #dee2e6;
+    background-color: #f8f9fa;
+    padding:0.2rem;
+    margin-bottom:0.5rem;
+}
 
 @media screen and (min-width:768px){
     #body-wrap {
@@ -73,6 +79,15 @@
     }
     #site-body {
         flex:1;
+    }
+
+    .search-filter {
+        display:inline-block;
+        .form-group {
+            display: inline-block;
+            margin-right: 0.2rem;
+            margin-bottom:0.2rem;
+        }
     }
 }
 

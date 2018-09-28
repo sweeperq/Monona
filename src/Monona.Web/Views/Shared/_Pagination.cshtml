@@ -1,0 +1,44 @@
+﻿@model PagedListMetaData
+
+@if (Model.TotalItemCount > 0)
+{
+    <nav>
+        <p>Results @Model.FirstItemOnPage - @Model.LastItemOnPage of @Model.TotalItemCount (Page @Model.Page  of @Model.PageCount)</p>
+        @if (Model.PageCount > 1)
+        {
+            var maxPages = 10;
+            var minPage = Model.Page - (maxPages / 2);
+            if (minPage < 1)
+            {
+                minPage = 1;
+            }
+            var maxPage = minPage + maxPages - 1;
+            if (maxPage > Model.PageCount)
+            {
+                maxPage = Model.PageCount;
+            }
+            <ul class="pagination">
+                @if (!Model.IsFirstPage)
+                {
+                    <li class="page-item"><a asp-route-page="1" class="page-link">&laquo;</a></li>
+                }
+                @if (Model.HasPreviousPage)
+                {
+                    <li class="page-item"><a asp-route-page="@(Model.Page - 1)" class="page-link">&lsaquo;</a></li>
+                }
+                @for (int i = minPage; i <= maxPage; i++)
+                {
+                    <li class="page-item@(i == Model.Page ? " active" : "")"><a asp-route-page="@i" class="page-link">@i</a></li>
+                }
+                @if (Model.HasNextPage)
+                {
+                    <li class="page-item"><a asp-route-page="@(Model.Page + 1)" class="page-link">&rsaquo;</a></li>
+                }
+                @if (!Model.IsLastPage)
+                {
+                    <li class="page-item"><a asp-route-page="@Model.PageCount" class="page-link">&raquo;</a></li>
+                }
+            </ul>
+        }
+    </nav>
+}
