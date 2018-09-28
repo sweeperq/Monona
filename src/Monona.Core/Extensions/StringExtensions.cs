@@ -1,4 +1,7 @@
-﻿namespace System
+﻿using System.Linq;
+using System.Text.RegularExpressions;
+
+namespace System
 {
     public static class StringExtensions
     {
