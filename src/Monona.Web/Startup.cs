@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Net.Http.Headers;
 using Monona.Data;
+using Monona.Services;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
@@ -39,6 +40,8 @@ namespace Monona.Web
             });
 
             services.AddDbContext<MononaDbContext>(cfg => cfg.UseSqlServer(Configuration.GetConnectionString("MononaConnection")));
+
+            services.AddScoped<CountryService>();
 
             services.AddResponseCompression(cfg => cfg.EnableForHttps = true);
 

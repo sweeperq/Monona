@@ -44,9 +44,12 @@ namespace System
         /// <param name="action">Action to perform for each item</param>
         public static void ForEach<T>(this IEnumerable<T> collection, Action<T> action)
         {
-            foreach(T item in collection)
+            if (collection != null)
             {
-                action(item);
+                foreach (T item in collection)
+                {
+                    action(item);
+                }
             }
         }
     }
