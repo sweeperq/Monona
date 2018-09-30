@@ -1,0 +1,48 @@
+﻿@model PagedSearchResult<StoreListItem, StoreFilter>
+@{
+    ViewData["Title"] = "Stores";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<partial name="_SearchFilter" model="@Model.Filter" />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Create" class="btn btn-primary btn-sm">Create</a>
+            </th>
+            <th><a asp-action="Sort" asp-route-sortField="Name" asp-route-sortDirection="@(Model.Filter.SortField == "Name" && Model.Filter.SortDirection == 0 ? 1 : 0)">Name</a></th>
+            <th><a asp-action="Sort" asp-route-sortField="Abbreviation" asp-route-sortDirection="@(Model.Filter.SortField == "Abbreviation" && Model.Filter.SortDirection == 0 ? 1 : 0)">Abbreviation</a></th>
+            <th><a asp-action="Sort" asp-route-sortField="Url" asp-route-sortDirection="@(Model.Filter.SortField == "Url" && Model.Filter.SortDirection == 0 ? 1 : 0)">Url</a></th>
+            <th><a asp-action="Sort" asp-route-sortField="Enabled" asp-route-sortDirection="@(Model.Filter.SortField == "Enabled" && Model.Filter.SortDirection == 0 ? 1 : 0)">Enabled</a></th>
+        </tr>
+    </thead>
+    <tbody>
+    @if (Model.Results.MetaData.PageItemCount > 0)
+    {
+        foreach (var item in Model.Results.Items)
+        {
+        <tr>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">Delete</a>
+            </td>
+            <td>@item.Name</td>
+            <td>@item.Abbreviation</td>
+            <td>@item.Url</td>
+            <td>@Html.DisplayFor(x => item.Enabled)</td>
+        </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="5" class="bg-light text-muted">No results found</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<partial name="_Pagination" model="@Model.Results.MetaData" />
