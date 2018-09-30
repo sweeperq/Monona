@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Monona.Services
 {
-    public class CountryService : BaseService<Country, int>
+    public class CountryService : GenericService<Country, int>
     {
         public CountryService(MononaDbContext context, IMapper mapper) : base(context, mapper)
         {

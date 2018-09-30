@@ -7,11 +7,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace Monona.Web.Models.GoogleCategories
+namespace Monona.Web.Models.AdjustmentTypes
 {
-    public class GoogleCategoryFilter : BaseSearchFilter<GoogleCategory>
+    public class AdjustmentTypeFilter : BaseSearchFilter<AdjustmentType>
     {
-        public GoogleCategoryFilter()
+        public AdjustmentTypeFilter()
         {
             SortField = "Name";
         }
@@ -22,30 +22,30 @@ namespace Monona.Web.Models.GoogleCategories
         [Display(Name = "Show all?")]
         public bool ShowAll { get; set; } = true;
 
-        public override Specification<GoogleCategory> GetSpecification()
+        public override Specification<AdjustmentType> GetSpecification()
         {
-            var spec = new Specification<GoogleCategory>();
+            var spec = new Specification<AdjustmentType>();
             if (!Ids.IsEmpty())
             {
                 int[] ids = ArrayHelpers.StringToIntArray(Ids);
                 if (ids != null && ids.Length > 0)
                 {
-                    spec.And(c => ids.Contains(c.Id));
+                    spec.And(a => ids.Contains(a.Id));
                 }
             }
             if (!Name.IsEmpty())
-                spec.And(c => c.Name.Contains(Name));
+                spec.And(a => a.Name.StartsWith(Name));
             if (!ShowAll)
-                spec.And(c => c.Enabled == true);
+                spec.And(a => a.Enabled == true);
             return spec;
         }
 
-        public override SortSpecification<GoogleCategory>[] GetSortSpecifications()
+        public override SortSpecification<AdjustmentType>[] GetSortSpecifications()
         {
-            List<SortSpecification<GoogleCategory>> specs = new List<SortSpecification<GoogleCategory>>();
-            specs.Add(new SortSpecification<GoogleCategory>(SortField, SortDirection));
+            List<SortSpecification<AdjustmentType>> specs = new List<SortSpecification<AdjustmentType>>();
+            specs.Add(new SortSpecification<AdjustmentType>(SortField, SortDirection));
             if (SortField == "Enabled")
-                specs.Add(new SortSpecification<GoogleCategory>("Name", SortDirection.Ascending));
+                specs.Add(new SortSpecification<AdjustmentType>("Name", SortDirection.Ascending));
             return specs.ToArray();
         }
     }

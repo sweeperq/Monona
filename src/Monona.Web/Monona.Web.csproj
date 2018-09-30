@@ -27,6 +27,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\AdjustmentTypes\Create.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AdjustmentTypes\Edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AdjustmentTypes\List.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AdjustmentTypes\_SearchFilter.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AdjustmentTypes\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\GoogleCategories\Create.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

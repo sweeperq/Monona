@@ -12,11 +12,11 @@ using System.Linq.Expressions;
 
 namespace Monona.Services
 {
-    public abstract class BaseService<T, TKey>
+    public class GenericService<T, TKey>
         where TKey : IEquatable<TKey>
         where T : class, IEntity<TKey>
     {
-        public BaseService(MononaDbContext context, IMapper mapper)
+        public GenericService(MononaDbContext context, IMapper mapper)
         {
             Context = context;
             Entities = Context.Set<T>();
@@ -145,7 +145,7 @@ namespace Monona.Services
             return query;
         }
 
-        public virtual IQueryable<TDto> FindInternalDto<TDto>(Specification<T> criteria, SortSpecification<T>[] sort)
+        protected virtual IQueryable<TDto> FindInternalDto<TDto>(Specification<T> criteria, SortSpecification<T>[] sort)
         {
             return FindInternal(criteria, sort).Select(e => this.Mapper.Map<TDto>(e));
         }
@@ -244,8 +244,6 @@ namespace Monona.Services
             }
             return result;
         }
-
-        
 
         protected void Commit(ServiceResult result = null)
         {
