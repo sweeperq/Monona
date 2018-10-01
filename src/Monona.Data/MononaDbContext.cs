@@ -17,6 +17,7 @@ namespace Monona.Data
             builder.ApplyConfiguration(new CountryConfiguration());
             builder.ApplyConfiguration(new GoogleCategoryConfiguration());
             builder.ApplyConfiguration(new StoreConfiguration());
+            builder.ApplyConfiguration(new VendorConfiguration());
 
         }
 
@@ -24,5 +25,6 @@ namespace Monona.Data
         public DbSet<Country> Countries { get; set; }
         public DbSet<GoogleCategory> GoogleCategories { get; set; }
         public DbSet<Store> Stores { get; set; }
+        public DbSet<Vendor> Vendors { get; set; }
     }
 }

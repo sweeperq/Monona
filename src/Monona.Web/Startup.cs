@@ -32,9 +32,9 @@ namespace Monona.Web
                 // Add all mapping profiles defined in Web or Services
                 cfg.AddProfiles("Monona.Web", "Monona.Services");
 
-                // Do not map properties marked as [ReadOnly(true)]
-                cfg.ForAllPropertyMaps(map =>
-                    map.SourceMember.GetCustomAttributes().OfType<ReadOnlyAttribute>().Any(x => x.IsReadOnly),
+            // Do not map properties marked as [ReadOnly(true)]
+            cfg.ForAllPropertyMaps(map =>
+                    map.SourceMember == null || map.SourceMember.GetCustomAttributes().OfType<ReadOnlyAttribute>().Any(x => x.IsReadOnly),
                     (map, config) => config.Ignore()
                 );
             });

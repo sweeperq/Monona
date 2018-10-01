@@ -1,0 +1,77 @@
+﻿@model VendorForm
+@{
+    ViewData["Title"] = "Create Vendor";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-8 col-lg-6 col-xl-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="optional"></label>
+                <textarea asp-for="Address" rows="4" class="form-control"></textarea>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PoEmailAddresses" class="optional"></label>
+                <input asp-for="PoEmailAddresses" class="form-control" />
+                <span asp-validation-for="PoEmailAddresses" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentTerms" class="optional"></label>
+                <input asp-for="PaymentTerms" class="form-control" />
+                <span asp-validation-for="PaymentTerms" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StripFromSkuForClient" class="optional"></label>
+                <input asp-for="StripFromSkuForClient" class="form-control" />
+                <span asp-validation-for="StripFromSkuForClient" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DefaultLeadDays" class="optional"></label>
+                <input asp-for="DefaultLeadDays" class="form-control" />
+                <span asp-validation-for="DefaultLeadDays" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DefaultCountryOfOriginId" class="optional"></label>
+                <select asp-for="DefaultCountryOfOriginId" asp-items="@Model.Countries" class="form-control">
+                    <option value="">Please select...</option>
+                </select>
+                <span asp-validation-for="DefaultCountryOfOriginId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DefaultGoogleCategoryId" class="optional"></label>
+                <select asp-for="DefaultGoogleCategoryId" asp-items="@Model.GoogleCategories" class="form-control">
+                    <option value="">Please select...</option>
+                </select>                    
+                <span asp-validation-for="DefaultGoogleCategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DefaultBrand" class="optional"></label>
+                <input asp-for="DefaultBrand" class="form-control" />
+                <span asp-validation-for="DefaultBrand" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Notes" class="optional"></label>
+                <textarea asp-for="Notes" rows="6" class="form-control"></textarea>
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" asp-for="Enabled" class="form-check-input">
+                <label asp-for="Enabled" class="form-check-label"></label>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Create</button>
+                <a asp-action="List" class="btn">Back to Vendors</a>
+            </div>
+        </form>
+    </div>
+</div>

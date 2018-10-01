@@ -31,7 +31,7 @@ namespace Monona.Services
 
         protected IMapper Mapper { get; }
 
-        protected IQueryable<T> Query
+        public IQueryable<T> Query
         {
             get { return Entities; }
         }

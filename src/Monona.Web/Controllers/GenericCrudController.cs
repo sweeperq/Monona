@@ -63,7 +63,8 @@ namespace Monona.Web.Controllers
 
         public virtual IActionResult Create()
         {
-            var model = Activator.CreateInstance(typeof(TCreateModel));
+            var model = (TCreateModel)Activator.CreateInstance(typeof(TCreateModel));
+            LoadRelatedCreateModelData(model);
             return View(model);
         }
 
@@ -79,6 +80,7 @@ namespace Monona.Web.Controllers
                 }
                 ModelState.AddResultErrors(result);
             }
+            LoadRelatedCreateModelData(model);
             return View(model);
         }
 
@@ -87,6 +89,7 @@ namespace Monona.Web.Controllers
             var model = _service.GetByIdDto<TEditModel>(id);
             if (model == null)
                 return NotFound();
+            LoadRelatedEditModelData(model);
             return View(model);
         }
 
@@ -102,6 +105,7 @@ namespace Monona.Web.Controllers
                 }
                 ModelState.AddResultErrors(result);
             }
+            LoadRelatedEditModelData(model);
             return View(model);
         }
 
@@ -114,6 +118,16 @@ namespace Monona.Web.Controllers
             }
             ModelState.AddResultErrors(result);
             return BadRequest(ModelState);
+        }
+
+        [NonAction]
+        protected virtual void LoadRelatedCreateModelData(TCreateModel model)
+        {
+        }
+
+        [NonAction]
+        protected virtual void LoadRelatedEditModelData(TEditModel model)
+        {
         }
     }
 }
