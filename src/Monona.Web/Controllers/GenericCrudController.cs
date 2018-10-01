@@ -72,7 +72,7 @@ namespace Monona.Web.Controllers
         [HttpPost]
         public virtual IActionResult Create(TCreateModel model)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && LoadEntityDataBeforeCreate(model))
             {
                 var result = _service.CreateFromDto<TCreateModel>(model);
                 if (result.Succeeded)
@@ -97,7 +97,7 @@ namespace Monona.Web.Controllers
         [HttpPost]
         public virtual IActionResult Edit([FromRoute]TKey id, TEditModel model)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && LoadEntityDataBeforeEdit(model))
             {
                 var result = _service.UpdateFromDto<TEditModel>(id, model);
                 if (result.Succeeded)
@@ -134,6 +134,18 @@ namespace Monona.Web.Controllers
         [NonAction]
         protected virtual void LoadFilterModelData(TFilter filter)
         {
+        }
+
+        [NonAction]
+        protected virtual bool LoadEntityDataBeforeCreate(TCreateModel model)
+        {
+            return true;
+        }
+
+        [NonAction]
+        protected virtual bool LoadEntityDataBeforeEdit(TEditModel model)
+        {
+            return true;
         }
     }
 }

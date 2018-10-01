@@ -1,0 +1,43 @@
+﻿@model MappingForm
+@{
+    ViewData["Title"] = "Edit Mapping";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-8 col-lg-6 col-xl-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id">
+            <span asp-validation-for="Id" class="text-danger"></span>
+            <input type="hidden" asp-for="ProductId">
+            <div class="form-group">
+                <label asp-for="StoreId"></label>
+                <select asp-for="StoreId" asp-items="@Model.Stores" class="form-control">
+                    <option value="">Please Select...</option>
+                </select>
+                <span asp-validation-for="StoreId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StoreSku"></label>
+                <input asp-for="StoreSku" class="form-control">
+                <span asp-validation-for="StoreSku" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sku" class="optional"></label>
+                <input asp-for="Sku" class="form-control">
+                <span asp-validation-for="Sku" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QuantityMultiplier" class="optional"></label>
+                <input type="number" asp-for="QuantityMultiplier" class="form-control">
+                <span asp-validation-for="QuantityMultiplier" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a asp-action="List" class="btn">Back to Mappings</a>
+            </div>
+        </form>
+    </div>
+</div>
