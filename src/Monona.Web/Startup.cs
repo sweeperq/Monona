@@ -33,7 +33,7 @@ namespace Monona.Web
                 // Add all mapping profiles defined in Web or Services
                 cfg.AddProfiles("Monona.Web", "Monona.Services");
 
-                cfg.AddProfile(new ProductListItemMappingProfile());
+                cfg.CreateMissingTypeMaps = false;
 
                 // Do not map properties marked as [ReadOnly(true)]
                 cfg.ForAllPropertyMaps(map =>

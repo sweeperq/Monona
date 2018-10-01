@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Monona.Core.Entities;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -16,5 +18,13 @@ namespace Monona.Web.Models.Countries
         public string Abbreviation { get; set; }
 
         public bool Enabled { get; set; } = true;
+    }
+
+    internal class CountryFormMappingProfile : Profile
+    {
+        public CountryFormMappingProfile()
+        {
+            CreateMap<Country, CountryForm>().ReverseMap();
+        }
     }
 }

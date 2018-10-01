@@ -1,4 +1,7 @@
-﻿namespace Monona.Web.Models.Vendors
+﻿using AutoMapper;
+using Monona.Core.Entities;
+
+namespace Monona.Web.Models.Vendors
 {
     public class VendorListItem
     {
@@ -9,5 +12,13 @@
         public string Address { get; set; }
 
         public bool Enabled { get; set; }
+    }
+
+    internal class VendorListItemMappingProfile : Profile
+    {
+        public VendorListItemMappingProfile()
+        {
+            CreateMap<Vendor, VendorListItem>();
+        }
     }
 }

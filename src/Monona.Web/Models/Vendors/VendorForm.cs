@@ -48,7 +48,7 @@ namespace Monona.Web.Models.Vendors
         public bool Enabled { get; set; } = true;
     }
 
-    public class VendorFormMappingProfile : Profile
+    internal class VendorFormMappingProfile : Profile
     {
         public VendorFormMappingProfile()
         {
