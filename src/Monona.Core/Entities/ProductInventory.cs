@@ -17,7 +17,7 @@ namespace Monona.Core.Entities
         public int AvailableQuantity { get; set; }
 
         [Range(0, int.MaxValue)]
-        public int PoQuantity { get; set; }
+        public int OnOrderQuantity { get; set; }
 
         public int PotentialQuantity { get; set; }
 

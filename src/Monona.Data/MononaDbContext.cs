@@ -26,6 +26,7 @@ namespace Monona.Data
             builder.ApplyConfiguration(new CountryConfiguration());
             builder.ApplyConfiguration(new GoogleCategoryConfiguration());
             builder.ApplyConfiguration(new ProductConfiguration());
+            builder.ApplyConfiguration(new ProductInventoryConfiguration());
             builder.ApplyConfiguration(new StoreConfiguration());
             builder.ApplyConfiguration(new VendorConfiguration());
         }

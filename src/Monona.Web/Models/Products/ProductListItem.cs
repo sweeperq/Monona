@@ -22,7 +22,7 @@ namespace Monona.Web.Models.Products
 
         public int AvailableQuantity { get; set; }
 
-        public int PoQuantity { get; set; }
+        public int OnOrderQuantity { get; set; }
 
         public DateTimeOffset? NextPoOn { get; set; }
 
@@ -39,7 +39,7 @@ namespace Monona.Web.Models.Products
                 .ForMember(dest => dest.VendorName, opt => opt.MapFrom(src => src.Vendor.Name))
                 .ForMember(dest => dest.StockQuantity, opt => opt.MapFrom(src => src.Inventory.StockQuantity))
                 .ForMember(dest => dest.AvailableQuantity, opt => opt.MapFrom(src => src.Inventory.AvailableQuantity))
-                .ForMember(dest => dest.PoQuantity, opt => opt.MapFrom(src => src.Inventory.PoQuantity))
+                .ForMember(dest => dest.OnOrderQuantity, opt => opt.MapFrom(src => src.Inventory.OnOrderQuantity))
                 .ForMember(dest => dest.NextPoOn, opt => opt.MapFrom(src => src.Inventory.NextPoOn));
         }
     }
