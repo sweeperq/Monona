@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using Monona.Core.Entities;
 using Monona.Core.Pagination;
@@ -147,7 +148,7 @@ namespace Monona.Services
 
         protected virtual IQueryable<TDto> FindInternalDto<TDto>(Specification<T> criteria, SortSpecification<T>[] sort)
         {
-            return FindInternal(criteria, sort).Select(e => this.Mapper.Map<TDto>(e));
+            return FindInternal(criteria, sort).ProjectTo<TDto>(this.Mapper.ConfigurationProvider);
         }
 
 

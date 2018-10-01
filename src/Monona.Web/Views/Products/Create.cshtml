@@ -1,0 +1,146 @@
+﻿@model ProductForm
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-8 col-lg-6 col-xl-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StoreId"></label>
+                <select asp-for="StoreId" asp-items="@Model.Stores" class="form-control">
+                    <option value="">Please select...</option>
+                </select>
+                <span asp-validation-for="StoreId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VendorId"></label>
+                <select asp-for="VendorId" asp-items="@Model.Vendors" class="form-control">
+                    <option value="">Please select...</option>
+                </select>
+                <span asp-validation-for="VendorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VendorPartNumber" class="optional"></label>
+                <input asp-for="VendorPartNumber" class="form-control">
+                <span asp-validation-for="VendorPartNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sku"></label>
+                <input asp-for="Sku" class="form-control">
+                <span asp-validation-for="Sku" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WarehouseLocation" class="optional"></label>
+                <input asp-for="WarehouseLocation" class="form-control">
+                <span asp-validation-for="WarehouseLocation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BulkWarehouseLocation" class="optional"></label>
+                <input asp-for="BulkWarehouseLocation" class="form-control">
+                <span asp-validation-for="BulkWarehouseLocation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CasePack"></label>
+                <input type="number" asp-for="CasePack" class="form-control">
+                <span asp-validation-for="CasePack" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReorderPoint"></label>
+                <input type="number" asp-for="ReorderPoint" class="form-control">
+                <span asp-validation-for="ReorderPoint" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LeadDays" class="optional"></label>
+                <input type="number" asp-for="LeadDays" class="form-control">
+                <span asp-validation-for="LeadDays" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cost" class="optional"></label>
+                <input type="number" asp-for="Cost" class="form-control">
+                <span asp-validation-for="Cost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Weight" class="optional"></label>
+                <input type="number" asp-for="Weight" class="form-control">
+                <span asp-validation-for="Weight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaxLength" class="optional"></label>
+                <input type="number" asp-for="MaxLength" class="form-control">
+                <span asp-validation-for="MaxLength" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BoxSize" class="optional"></label>
+                <input asp-for="BoxSize" class="form-control">
+                <span asp-validation-for="BoxSize" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryOfOriginId" class="optional"></label>
+                <select asp-for="CountryOfOriginId" asp-items="@Model.Countries" class="form-control">
+                    <option value="">Please select...</option>
+                </select>
+                <span asp-validation-for="CountryOfOriginId" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" asp-for="Dropshipped" class="form-check-input">
+                <label asp-for="Dropshipped" class="form-check-label"></label>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" asp-for="Seasonal" class="form-check-input">
+                <label asp-for="Seasonal" class="form-check-label"></label>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" asp-for="DisallowBackorder" class="form-check-input">
+                <label asp-for="DisallowBackorder" class="form-check-label"></label>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" asp-for="Discontinued" class="form-check-input">
+                <label asp-for="Discontinued" class="form-check-label"></label>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" asp-for="NotInStoresExclude" class="form-check-input">
+                <label asp-for="NotInStoresExclude" class="form-check-label"></label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gtin" class="optional"></label>
+                <input asp-for="Gtin" class="form-control">
+                <span asp-validation-for="Gtin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Brand" class="optional"></label>
+                <input asp-for="Brand" class="form-control">
+                <span asp-validation-for="Brand" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mpn" class="optional"></label>
+                <input asp-for="Mpn" class="form-control">
+                <span asp-validation-for="Mpn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GoogleCategoryId" class="optional"></label>
+                <select asp-for="GoogleCategoryId" asp-items="@Model.GoogleCategories" class="form-control">
+                    <option value="">Please select...</option>
+                </select>
+                <span asp-validation-for="GoogleCategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Notes" class="optional"></label>
+                <textarea asp-for="Notes" rows="5" class="form-control"></textarea>
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Create</button>
+                <a asp-action="List" class="btn">Back to Products</a>
+            </div>
+        </form>
+    </div>
+</div>

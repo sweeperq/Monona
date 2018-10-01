@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     // focus on the first visible input
-    $('#site-body input:visible').first().focus();
+    $('#site-body input:visible, #site-body select').first().focus();
 
     // configure metismenu
     $('#metismenu').metisMenu();

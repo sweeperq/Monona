@@ -1,0 +1,60 @@
+﻿@model PagedSearchResult<ProductListItem, ProductFilter>
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<partial name="_SearchFilter" model="@Model.Filter" />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Create" class="btn btn-primary btn-sm">Create</a>
+            </th>
+            <th><a asp-action="Sort" asp-route-sortField="Sku" asp-route-sortDirection="@(Model.Filter.SortField == "Sku" && Model.Filter.SortDirection == 0 ? 1 : 0)">Sku</a></th>
+            <th><a asp-action="Sort" asp-route-sortField="Name" asp-route-sortDirection="@(Model.Filter.SortField == "Name" && Model.Filter.SortDirection == 0 ? 1 : 0)">Name</a></th>
+            <th>Notes</th>
+            <th><a asp-action="Sort" asp-route-sortField="Vendor.Name" asp-route-sortDirection="@(Model.Filter.SortField == "Vendor.Name" && Model.Filter.SortDirection == 0 ? 1 : 0)">Vendor</a></th>
+            <th>#Stock</th>
+            <th>#Avail</th>
+            <th>#OnOrder</th>
+            <th>Next PO On</th>
+            <th><a asp-action="Sort" asp-route-sortField="WarehouseLocation" asp-route-sortDirection="@(Model.Filter.SortField == "WarehouseLocation" && Model.Filter.SortDirection == 0 ? 1 : 0)">WH Location</a></th>
+            <th>Discontinued</th>
+        </tr>
+    </thead>
+    <tbody>
+    @if (Model.Results.MetaData.PageItemCount > 0)
+    {
+        foreach (var item in Model.Results.Items)
+        {
+        <tr>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">Delete</a>
+            </td>
+            <td>@item.Sku</td>
+            <td>@item.Name</td>
+            <td>@item.Notes</td>
+            <td>@item.VendorName</td>
+            <td>@item.StockQuantity</td>
+            <td>@item.AvailableQuantity</td>
+            <td>@item.PoQuantity</td>
+            <td>@item.NextPoOn</td>
+            <td>@item.WarehouseLocation</td>
+            <td>@item.Discontinued</td>
+        </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="11" class="bg-light text-muted">No results found</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<partial name="_Pagination" model="@Model.Results.MetaData" />

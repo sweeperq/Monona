@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Net.Http.Headers;
 using Monona.Data;
 using Monona.Services;
+using Monona.Web.Models.Products;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
@@ -32,8 +33,10 @@ namespace Monona.Web
                 // Add all mapping profiles defined in Web or Services
                 cfg.AddProfiles("Monona.Web", "Monona.Services");
 
-            // Do not map properties marked as [ReadOnly(true)]
-            cfg.ForAllPropertyMaps(map =>
+                cfg.AddProfile(new ProductListItemMappingProfile());
+
+                // Do not map properties marked as [ReadOnly(true)]
+                cfg.ForAllPropertyMaps(map =>
                     map.SourceMember == null || map.SourceMember.GetCustomAttributes().OfType<ReadOnlyAttribute>().Any(x => x.IsReadOnly),
                     (map, config) => config.Ignore()
                 );

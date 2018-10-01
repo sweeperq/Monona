@@ -58,6 +58,7 @@ namespace Monona.Web.Controllers
                 SearchFilterHelpers.SetSearchFilter(this, model.Filter);
             }
             model.Results = _service.FindManyDtoPaged<TListItem>(model.Filter.Page, model.Filter.PageSize, model.Filter.GetSpecification(), model.Filter.GetSortSpecifications());
+            LoadFilterModelData(model.Filter);
             return View(model);
         }
 
@@ -127,6 +128,11 @@ namespace Monona.Web.Controllers
 
         [NonAction]
         protected virtual void LoadRelatedEditModelData(TEditModel model)
+        {
+        }
+
+        [NonAction]
+        protected virtual void LoadFilterModelData(TFilter filter)
         {
         }
     }
