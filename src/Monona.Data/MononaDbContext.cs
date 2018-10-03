@@ -29,6 +29,8 @@ namespace Monona.Data
             builder.ApplyConfiguration(new MappingConfiguration());
             builder.ApplyConfiguration(new ProductConfiguration());
             builder.ApplyConfiguration(new ProductInventoryConfiguration());
+            builder.ApplyConfiguration(new ReportGroupConfiguration());
+            builder.ApplyConfiguration(new ReportGroupItemConfiguration());
             builder.ApplyConfiguration(new ReservationConfiguration());
             builder.ApplyConfiguration(new StoreConfiguration());
             builder.ApplyConfiguration(new VendorConfiguration());
@@ -40,6 +42,8 @@ namespace Monona.Data
         public DbSet<GoogleCategory> GoogleCategories { get; set; }
         public DbSet<Mapping> Mappings { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ReportGroup> ReportGroups { get; set; }
+        public DbSet<ReportGroupItem> ReportGroupItems { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Store> Stores { get; set; }
         public DbSet<Vendor> Vendors { get; set; }

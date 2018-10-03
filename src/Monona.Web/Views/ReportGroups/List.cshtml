@@ -1,0 +1,45 @@
+﻿@model PagedSearchResult<ReportGroupListItem, ReportGroupFilter>
+@{
+    ViewData["Title"] = "Report Groups";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<partial name="_SearchFilter" model="@Model.Filter" />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Create" class="btn btn-primary btn-sm">Create</a>
+            </th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+    @if (Model.Results.MetaData.PageItemCount > 0)
+    {
+        foreach (var item in Model.Results.Items)
+        {
+        <tr>
+            <td>
+                <a asp-controller="ReportGroupItems" asp-action="Search" asp-route-reportGroupId="@item.Id" class="btn btn-outline-info btn-sm">Items</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">Delete</a>
+            </td>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+        </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="3" class="bg-light text-muted">No results found</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<partial name="_Pagination" model="@Model.Results.MetaData" />
