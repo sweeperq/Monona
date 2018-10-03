@@ -262,7 +262,7 @@ namespace Monona.Services
                     }
                     else
                     {
-                        result.AddError(ex.Message);
+                        result.AddError(ex.GetInnerMost().Message);
                     }
                 }
             }
