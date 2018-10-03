@@ -1,0 +1,60 @@
+﻿@model ReservationCreateForm
+@{
+    ViewData["Title"] = "Create Reservation";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-8 col-lg-6 col-xl-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StoreId"></label>
+                <select asp-for="StoreId" asp-items="@Model.Stores" class="form-control">
+                    <option value="">Please Select...</option>
+                </select>
+                <span asp-validation-for="StoreId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderId"></label>
+                <input type="number" asp-for="OrderId" class="form-control">
+                <span asp-validation-for="OrderId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShipmentId"></label>
+                <input type="number" asp-for="ShipmentId" class="form-control">
+                <span asp-validation-for="ShipmentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderItemId"></label>
+                <input type="number" asp-for="OrderItemId" class="form-control">
+                <span asp-validation-for="OrderItemId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderNumber"></label>
+                <input asp-for="OrderNumber" class="form-control">
+                <span asp-validation-for="OrderNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sku"></label>
+                <input asp-for="Sku" class="form-control">
+                <span asp-validation-for="Sku" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity"></label>
+                <input type="number" asp-for="Quantity" class="form-control">
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReservedOn"></label>
+                <input type="datetime" asp-for="ReservedOn" class="form-control">
+                <span asp-validation-for="ReservedOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Create</button>
+                <a asp-action="List" class="btn">Back to Reservations</a>
+            </div>
+        </form>
+    </div>
+</div>
