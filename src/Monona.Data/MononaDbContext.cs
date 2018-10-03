@@ -22,6 +22,7 @@ namespace Monona.Data
                 prop.Relational().ColumnType = "decimal(18,4)";
             }
 
+            builder.ApplyConfiguration(new AdjustmentConfiguration());
             builder.ApplyConfiguration(new AdjustmentTypeConfiguration());
             builder.ApplyConfiguration(new CountryConfiguration());
             builder.ApplyConfiguration(new GoogleCategoryConfiguration());
@@ -33,6 +34,7 @@ namespace Monona.Data
             builder.ApplyConfiguration(new VendorConfiguration());
         }
 
+        public DbSet<Adjustment> Adjustments { get; set; }
         public DbSet<AdjustmentType> AdjustmentTypes { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<GoogleCategory> GoogleCategories { get; set; }

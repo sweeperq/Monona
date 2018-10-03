@@ -20,9 +20,13 @@ namespace Monona.Web.Models.Products
 
         public int StockQuantity { get; set; }
 
+        public int ReservedQuantity { get; set; }
+
         public int AvailableQuantity { get; set; }
 
         public int OnOrderQuantity { get; set; }
+
+        public int PotentialQuantity { get; set; }
 
         public DateTimeOffset? NextPoOn { get; set; }
 
@@ -38,8 +42,10 @@ namespace Monona.Web.Models.Products
             CreateMap<Product, ProductListItem>()
                 .ForMember(dest => dest.VendorName, opt => opt.MapFrom(src => src.Vendor.Name))
                 .ForMember(dest => dest.StockQuantity, opt => opt.MapFrom(src => src.Inventory.StockQuantity))
+                .ForMember(dest => dest.ReservedQuantity, opt => opt.MapFrom(src => src.Inventory.ReservedQuantity))
                 .ForMember(dest => dest.AvailableQuantity, opt => opt.MapFrom(src => src.Inventory.AvailableQuantity))
                 .ForMember(dest => dest.OnOrderQuantity, opt => opt.MapFrom(src => src.Inventory.OnOrderQuantity))
+                .ForMember(dest => dest.PotentialQuantity, opt => opt.MapFrom(src => src.Inventory.PotentialQuantity))
                 .ForMember(dest => dest.NextPoOn, opt => opt.MapFrom(src => src.Inventory.NextPoOn));
         }
     }

@@ -47,6 +47,7 @@ namespace Monona.Web
             services.AddScoped(typeof(GenericService<,>));
             services.AddScoped<CountryService>();
             services.AddScoped<ReservationService>();
+            services.AddScoped<AdjustmentService>();
             
 
             services.AddResponseCompression(cfg => cfg.EnableForHttps = true);

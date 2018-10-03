@@ -1,0 +1,51 @@
+﻿@model PagedSearchResult<AdjustmentListItem, AdjustmentFilter>
+@{
+    ViewData["Title"] = "Adjustments";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<partial name="_SearchFilter" model="@Model.Filter" />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Create" class="btn btn-primary btn-sm">Create</a>
+            </th>
+            <th>Type</th>
+            <th>Store</th>
+            <th>Sku</th>
+            <th>Name</th>
+            <th>Reference</th>
+            <th>Qty</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+    @if (Model.Results.MetaData.PageItemCount > 0)
+    {
+        foreach (var item in Model.Results.Items)
+        {
+        <tr>
+            <td>&nbsp;</td>
+            <td>@item.AdjustmentTypeName</td>
+            <td>@item.StoreName</td>
+            <td><a asp-controller="Products" asp-action="Search" asp-route-ids="@item.ProductId" asp-route-showAll="true" target="_blank">@item.Sku</a></td>
+            <td>@item.ProductName</td>
+            <td>@item.ReferenceNumber</td>
+            <td>@item.Quantity</td>
+            <td>@item.AdjustmentDate.ToLocalTime().ToString("M/d/yyyy hh:mm:ss tt")</td>
+        </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="8" class="bg-light text-muted">No results found</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<partial name="_Pagination" model="@Model.Results.MetaData" />

@@ -18,8 +18,10 @@
             <th>Notes</th>
             <th><a asp-action="Sort" asp-route-sortField="Vendor.Name" asp-route-sortDirection="@(Model.Filter.SortField == "Vendor.Name" && Model.Filter.SortDirection == 0 ? 1 : 0)">Vendor</a></th>
             <th>#Stock</th>
+            <th>#Resv</th>
             <th>#Avail</th>
             <th>#OnOrder</th>
+            <th>#Pot</th>
             <th>Next PO On</th>
             <th><a asp-action="Sort" asp-route-sortField="WarehouseLocation" asp-route-sortDirection="@(Model.Filter.SortField == "WarehouseLocation" && Model.Filter.SortDirection == 0 ? 1 : 0)">WH Location</a></th>
             <th>Discontinued</th>
@@ -40,8 +42,10 @@
             <td>@item.Notes</td>
             <td>@item.VendorName</td>
             <td>@item.StockQuantity</td>
+            <td>@item.ReservedQuantity</td>
             <td>@item.AvailableQuantity</td>
             <td>@item.OnOrderQuantity</td>
+            <td>@item.PotentialQuantity</td>
             <td>@item.NextPoOn</td>
             <td>@item.WarehouseLocation</td>
             <td>@item.Discontinued</td>
@@ -51,7 +55,7 @@
     else
     {
         <tr>
-            <td colspan="11" class="bg-light text-muted">No results found</td>
+            <td colspan="13" class="bg-light text-muted">No results found</td>
         </tr>
     }
     </tbody>

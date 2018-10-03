@@ -27,6 +27,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Adjustments\Create.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Adjustments\List.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Adjustments\_SearchFilter.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Adjustments\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\AdjustmentTypes\Create.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
