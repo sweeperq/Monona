@@ -13,4 +13,12 @@
     $('#site-nav-toggle').on('click', function (e) {
         $('#site-nav').toggleClass('show');
     });
+
+    $('.delete-confirm').on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $('#delete-modal').modal('show');
+        $('#delete-confirm').attr('href', $(this).attr('href'));
+        $('#delete-cancel').focus();
+    });
 });

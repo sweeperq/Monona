@@ -27,7 +27,7 @@
         <tr>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">Edit</a>
-                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm delete-confirm">Delete</a>
             </td>
             <td>@item.Name</td>
             <td>@item.Abbreviation</td>
@@ -46,3 +46,5 @@
 </table>
 
 <partial name="_Pagination" model="@Model.Results.MetaData" />
+
+<partial name="_DeleteConfirm" />
