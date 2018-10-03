@@ -1,0 +1,50 @@
+﻿@model PagedSearchResult<ReservationListItem, ReservationFilter>
+@{
+    ViewData["Title"] = "Reservations";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<partial name="_SearchFilter" model="@Model.Filter" />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Create" class="btn btn-primary btn-sm">Create</a>
+            </th>
+            <th><a asp-action="Sort" asp-route-sortField="Store.Name" asp-route-sortDirection="@(Model.Filter.SortField == "Store.Name" && Model.Filter.SortDirection == 0 ? 1 : 0)">Store</a></th>
+            <th><a asp-action="Sort" asp-route-sortField="OrderNumber" asp-route-sortDirection="@(Model.Filter.SortField == "OrderNumber" && Model.Filter.SortDirection == 0 ? 1 : 0)">Order #</a></th>
+            <th><a asp-action="Sort" asp-route-sortField="Product.Sku" asp-route-sortDirection="@(Model.Filter.SortField == "Product.Sku" && Model.Filter.SortDirection == 0 ? 1 : 0)">Sku</a></th>
+            <th>Quantity</th>
+            <th><a asp-action="Sort" asp-route-sortField="ReservedOn" asp-route-sortDirection="@(Model.Filter.SortField == "ReservedOn" && Model.Filter.SortDirection == 0 ? 1 : 0)">Reserved</a></th>
+        </tr>
+    </thead>
+    <tbody>
+    @if (Model.Results.MetaData.PageItemCount > 0)
+    {
+        foreach (var item in Model.Results.Items)
+        {
+        <tr>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">Delete</a>
+            </td>
+            <td>@item.StoreName</td>
+            <td><a href="@item.GetOrderUrl()">@item.OrderNumber-@item.ShipmentId</a></td>
+            <td><a asp-controller="Products" asp-action="Search" asp-route-ids="@item.ProductId" asp-route-showAll="true" target="_blank">@item.Sku</a></td>
+            <td>@item.Quantity</td>
+            <td>@item.ReservedOn</td>
+        </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="6" class="bg-light text-muted">No results found</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<partial name="_Pagination" model="@Model.Results.MetaData" />

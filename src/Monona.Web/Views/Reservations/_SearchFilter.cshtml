@@ -1,0 +1,49 @@
+﻿@model ReservationFilter
+
+<form method="get" asp-action="Search">
+    <div class="search-filter">
+        <input type="hidden" asp-for="SortField" />
+        <input type="hidden" asp-for="SortDirection" />
+
+        <div class="form-group">
+            <label asp-for="PageSize"></label>
+            <select asp-for="PageSize" class="form-control">
+                <option value="2">2</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="250">250</option>
+                <option value="500">500</option>
+                <option value="0">ALL</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Ids"></label>
+            <input asp-for="Ids" class="form-control">
+            <span asp-validation-for="Ids" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ProductIds"></label>
+            <input asp-for="ProductIds" class="form-control">
+            <span asp-validation-for="ProductIds" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="OrderNumber"></label>
+            <input asp-for="OrderNumber" class="form-control">
+            <span asp-validation-for="OrderNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Sku"></label>
+            <input asp-for="Sku" class="form-control">
+            <span asp-validation-for="Sku" class="text-danger"></span>
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" asp-for="ShowAll" class="form-check-input">
+            <label asp-for="ShowAll" class="form-check-label"></label>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-outline-primary">Search</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">Reset</a>
+        </div>
+    </div>
+</form>
